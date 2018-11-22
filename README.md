@@ -59,3 +59,4 @@ cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee
 cf restart articulate
 ```
 
+The `attendee-service` route will no longer navigable from a browser
