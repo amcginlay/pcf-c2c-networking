@@ -17,8 +17,8 @@ EXTERNAL_DOMAIN=<YOUR_DOMAIN> # e.g. cfapps.io
 ## Push the apps with external routes
 
 ```bash
-cf push articulate -p articulate-0.0.1-SNAPSHOT.jar -n articulate-${INITIALS} --no-start
-cf push attendee-service -p attendee-service-0.0.1-SNAPSHOT.jar -n attendee-service-${INITIALS} --no-start
+cf push articulate -p articulate-0.0.1-SNAPSHOT.jar -n articulate-${INITIALS} -d ${EXTERNAL_DOMAIN} --no-start
+cf push attendee-service -p attendee-service-0.0.1-SNAPSHOT.jar -n attendee-service-${INITIALS} -d ${EXTERNAL_DOMAIN} --no-start
 ```
 
 ## Create and bind the services
