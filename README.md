@@ -24,10 +24,10 @@ cf push attendee-service -p attendee-service-0.0.1-SNAPSHOT.jar -n attendee-serv
 ## Create and bind the services
 
 ```bash
-cf create-service p.mysql db-small mydata
+cf create-service p-mysql 100mb mydata # ... or similar
 cf bind-service attendee-service mydata
 
-cf create-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.${EXTERNAL_DOMAIN}/attendees
+cf create-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.${EXTERNAL_DOMAIN}/attendees"
 cf bind-service articulate attendee-service-ups
 ```
 ## Start the apps
@@ -36,3 +36,26 @@ cf bind-service articulate attendee-service-ups
 cf start attendee-service
 cf start articulate
 ```
+
+The routes to both apps should be navigable from a browser
+
+## Internalize the attendee-service route
+
+```bash
+cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
+cf unmap-route attendee-service ${EXTERNAL_DOMAIN} -n attendee-service-${INITIALS}
+```
+
+## Enable the apps to communicate internally
+
+```bash
+cf add-network-policy articulate --destination-app attendee-service
+```
+
+## Update the service endpoint configuration
+
+```bash
+cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.apps.internal:8080/attendees"
+cf restart articulate
+```
+
