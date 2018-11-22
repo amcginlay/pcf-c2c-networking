@@ -37,7 +37,7 @@ cf start attendee-service
 cf start articulate
 ```
 
-The routes to both apps should be navigable from a browser
+Data entry is possible and the routes to both apps should be navigable from a browser
 
 ## Internalize the attendee-service route
 
@@ -59,4 +59,4 @@ cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee
 cf restart articulate
 ```
 
-The `attendee-service` route will no longer navigable from a browser
+Data entry is still possible but the `attendee-service` route will no longer navigable from a browser
