@@ -59,8 +59,9 @@ cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee
 cf restart articulate
 ```
 
-Data entry is still possible but the `attendee-service` route will no longer navigable from a browser.
-Note the use of port 8080 shines through the from the container without colliding in the host.
+Data entry is still possible but the `attendee-service` route will no longer be navigable from a browser.
+Note the internal port 8080 is bound straight through the from the container without colliding in the host.
+
 This aludes to the presence of software defined networking.
 It's also why our each of our containers internally runs an Envoy process.
 Try running `cf ssh articulate -c "ps -ef | grep envoy"`.
