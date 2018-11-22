@@ -11,7 +11,7 @@ wget https://github.com/pivotal-education/pcf-attendee-service-code/releases/dow
 
 ```bash
 INITIALS=<YOUR_INITIALS>
-EXTERNAL_DOMAIN=<YOUR_DOMAIN> # e.g. apps.cfapps.io
+EXTERNAL_DOMAIN=<YOUR_DOMAIN> # e.g. cfapps.io
 ```
 
 ## Push the apps with external routes
