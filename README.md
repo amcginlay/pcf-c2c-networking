@@ -7,14 +7,14 @@ wget https://github.com/pivotal-education/pcf-articulate-code/releases/download/
 wget https://github.com/pivotal-education/pcf-attendee-service-code/releases/download/0.0.1/attendee-service-0.0.1-SNAPSHOT.jar
 ```
 
-# Set some vars
+## Set some vars
 
 ```bash
 INITIALS=<YOUR_INITIALS>
 EXTERNAL_DOMAIN=<YOUR_DOMAIN> # e.g. apps.cfapps.io
 ```
 
-# Push the apps with external routes
+## Push the apps with external routes
 
 ```bash
 cf push articulate -p articulate-0.0.1-SNAPSHOT.jar -n articulate-${INITIALS} --no-start
