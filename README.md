@@ -39,12 +39,13 @@ cf start attendee-service
 cf start articulate
 ```
 
-Data entry is possible in `articulate` via the Services tab _but_ routes to both of the apps are navigable from a browser
+Data entry is possible in `articulate` via the Services tab _but_ routes to
+both of the apps are navigable from a browser
 
 ## Internalize a route
 
-We don't want the outside world accessing the `attendee-service` directly so replace its
-route with one that is only accessible internally.
+We don't want the outside world directly accessing the `attendee-service` so
+replace its route with one that is only accessible internally.
 
 ```bash
 cf unmap-route attendee-service ${DOMAIN} -n attendee-service-${INITIALS}
@@ -61,7 +62,8 @@ cf add-network-policy articulate --destination-app attendee-service
 
 ## Update the service endpoint configuration
 
-A reference to the old endpoint was wired into VCAP_SERVICES for `articulate` so update this.
+A reference to the old endpoint was wired into VCAP_SERVICES for `articulate`
+so update this.
 
 ```bash
 cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.apps.internal:8080/attendees"
@@ -69,7 +71,9 @@ cf restart articulate
 ```
 
 Things to note:
-- Data entry via `articulate` is still possible, even though `attendee-service` is no longer navigable from a browser
-- Port 8080 is used _outside_ of the container, even when running at scale (software defined networking)
+- Data entry via `articulate` is still possible, even though `attendee-service` 
+is no longer navigable from a browser
+- Port 8080 is used _outside_ of the container, even when running at scale 
+(software defined networking)
 - We no longer require Eureka to help with container-to-container networking
 - Try running `cf ssh articulate -c "ps -ef | grep envoy"`
