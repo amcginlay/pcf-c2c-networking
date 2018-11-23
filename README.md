@@ -54,7 +54,7 @@ cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
 
 ## Enable internal communication between the front-end and back-end
 
-Internal communication between specific apps can only happen if we say so
+Internal communication between apps can only happen if we directly sanction it
 
 ```bash
 cf add-network-policy articulate --destination-app attendee-service
