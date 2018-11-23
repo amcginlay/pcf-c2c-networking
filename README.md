@@ -39,7 +39,7 @@ cf start attendee-service
 cf start articulate
 ```
 
-Data entry is possible _but_ the routes to both apps should be navigable from a browser
+Data entry is possible _but_ the routes to both apps are navigable from a browser
 
 ## Internalize a route
 
