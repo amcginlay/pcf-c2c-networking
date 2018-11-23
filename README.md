@@ -69,8 +69,7 @@ cf restart articulate
 ```
 
 Things to note:
-- Data entry is still possible
-- The `attendee-service` is no longer navigable from a browser
+- Data entry via `articulate` is still possible, even though `attendee-service` is no longer navigable from a browser
 - Port 8080 is used outside of the container, even when running at scale
 - We no longer require Eureka to help with container-to-container networking
 - Try running `cf ssh articulate -c "ps -ef | grep envoy"`
