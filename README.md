@@ -52,7 +52,7 @@ cf unmap-route attendee-service ${DOMAIN} -n attendee-service-${INITIALS}
 cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
 ```
 
-## Enable the front-end to communicate with the back-end
+## Enable internal communication between the front-end and back-end
 
 Internal communication between apps can only happen if we say so
 
