@@ -41,22 +41,27 @@ cf start articulate
 
 Data entry is possible _but_ the routes to both apps should be navigable from a browser
 
-## Internalize the attendee-service route
+## Internalize a route
 
-Replace the external route with an internal one
+We don't want the outside world accessing the `attendee-service` directly so replace its
+route with one that is only accessible internally.
 
 ```bash
 cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
 cf unmap-route attendee-service ${DOMAIN} -n attendee-service-${INITIALS}
 ```
 
-## Enable the apps to communicate internally
+## Enable the front-end to communicate with the back-end
+
+Internal communication between apps can only happen if we say so
 
 ```bash
 cf add-network-policy articulate --destination-app attendee-service
 ```
 
 ## Update the service endpoint configuration
+
+A reference to the endpoint is wired into VCAP_SERVICES for `articulate` so update this.
 
 ```bash
 cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.apps.internal:8080/attendees"
