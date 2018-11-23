@@ -47,8 +47,8 @@ We don't want the outside world accessing the `attendee-service` directly so rep
 route with one that is only accessible internally.
 
 ```bash
-cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
 cf unmap-route attendee-service ${DOMAIN} -n attendee-service-${INITIALS}
+cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
 ```
 
 ## Enable the front-end to communicate with the back-end
