@@ -14,7 +14,9 @@ INITIALS=<YOUR_INITIALS>
 DOMAIN=<YOUR_DOMAIN> # e.g. cfapps.io
 ```
 
-## Push the apps with external routes
+## Push all the apps to our external domain
+
+This is the "old school" way of deploying apps which need to talk to each other.
 
 ```bash
 cf push articulate -p articulate-0.0.1-SNAPSHOT.jar -n articulate-${INITIALS} -d ${DOMAIN} --no-start
@@ -37,9 +39,11 @@ cf start attendee-service
 cf start articulate
 ```
 
-Data entry is possible and the routes to both apps should be navigable from a browser
+Data entry is possible _but_ the routes to both apps should be navigable from a browser
 
 ## Internalize the attendee-service route
+
+Replace the external route with an internal one
 
 ```bash
 cf map-route attendee-service apps.internal -n attendee-service-${INITIALS}
