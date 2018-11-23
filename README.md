@@ -1,5 +1,8 @@
 # pcf-c2c-networking
 
+When you invoke `cf domains` in Pivotal Application Service is all about have you ever wondered what `apps.internal` is?
+The following steps use a demo app to show the old way and the new way before setting out the key points to note.
+
 ## Download the artifacts
 
 ```bash
