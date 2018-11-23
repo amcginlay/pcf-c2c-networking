@@ -61,16 +61,16 @@ cf add-network-policy articulate --destination-app attendee-service
 
 ## Update the service endpoint configuration
 
-A reference to the endpoint is wired into VCAP_SERVICES for `articulate` so update this.
+A reference to the old endpoint was wired into VCAP_SERVICES for `articulate` so update this.
 
 ```bash
 cf update-user-provided-service attendee-service-ups -p uri <<< "http://attendee-service-${INITIALS}.apps.internal:8080/attendees"
 cf restart articulate
 ```
 
-Data entry is still possible but the `attendee-service` route will no longer be navigable from a browser.
-Note the internal port 8080 is bound straight through the from the container without colliding in the host.
-
-This aludes to the presence of software defined networking.
-It's also why each of our containers internally runs an Envoy process.
-Try running `cf ssh articulate -c "ps -ef | grep envoy"`.
+Things to note:
+- Data entry is still possible
+- The `attendee-service` is no longer navigable from a browser
+- Port 8080 is used outside of the container, even when running at scale
+- We no longer require Eureka to help with container-to-container networking
+- Try running `cf ssh articulate -c "ps -ef | grep envoy"`
