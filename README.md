@@ -14,7 +14,7 @@ INITIALS=<YOUR_INITIALS>
 DOMAIN=<YOUR_DOMAIN> # e.g. cfapps.io
 ```
 
-## Push all the apps to our external domain
+## Push all the apps with external routes
 
 This is the "old school" way of deploying apps which need to talk to each other.
 
